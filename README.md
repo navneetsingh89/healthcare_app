@@ -28,6 +28,13 @@ Install dependency:
 pip install requests
 ```
 
+## Setup (Recommended)
+```bash
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
+
 ## Run
 ```bash
 python main.py
