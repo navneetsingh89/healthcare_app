@@ -1,0 +1,18 @@
+# Ignore all dotfiles and dot-directories by default
+.*
+
+# Keep repo metadata and GitHub config tracked
+!.gitignore
+!.github/
+!.github/**
+
+# Python bytecode cache
+__pycache__/
+
+# Python artifacts and local env
+*.pyc
+*.pyo
+*.pyd
+.venv/
+venv/
+.env
