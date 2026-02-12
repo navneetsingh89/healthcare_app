@@ -1,0 +1,15 @@
+app:
+  name: healthcare_app
+  environment: dev
+
+api:
+  fhir_base_url: https://r4.smarthealthit.org
+  timeout: 10
+  retries: 3
+
+database:
+  path: patients.db
+
+logging:
+  level: INFO
+  format: "%(asctime)s | %(levelname)s | %(message)s"
