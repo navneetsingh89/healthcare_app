@@ -5,6 +5,7 @@ from service.patient_service import PatientService
 from export.console_exporter import ConsoleExporter
 from export.file_exporter import FileExporter
 import logging
+from config.settings import Settings
 
 
 
@@ -18,11 +19,11 @@ logging.error("message")
 
 
 if __name__ == "__main__":
-    api_client = FhirApiClient("https://r4.smarthealthit.org")
+    api_client = FhirApiClient(Settings.FHIR_BASE_URL,)
     parser = PatientParser()
-    repository = PatientRepository("patients.db")
+    repository = PatientRepository(Settings.DB_PATH)
     console_exporter = ConsoleExporter()
-    file_exporter = FileExporter("patients.txt")
+    file_exporter = FileExporter(Settings.FILE_PATH)
 
     service = PatientService(api_client, parser, repository, console_exporter, file_exporter)
     service.process(count=10)
