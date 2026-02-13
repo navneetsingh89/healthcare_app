@@ -1,5 +1,7 @@
 from models.patient import Patient
-import logging
+from utils import get_logger
+
+logger = get_logger(__name__)
 
 
 class PatientParser:
@@ -19,5 +21,5 @@ class PatientParser:
                 gender=patient_json.get("gender"),
             )
         except Exception:
-            logging.exception("Parsing error")
+            logger.exception("Error parsing patient JSON")
             return Patient("UNKNOWN", "UNKNOWN", "UNKNOWN", "UNKNOWN")

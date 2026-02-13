@@ -1,7 +1,9 @@
 import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
-import logging
+from utils import get_logger
+
+logger = get_logger(__name__)
 
 
 class FhirApiClient:
@@ -27,20 +29,22 @@ class FhirApiClient:
         self.session.mount("https://", adapter)
 
     def fetch_patients(self, count=10):
-        print("Fetching patients from FHIR API...")
+        logger.info(f"Fetching {count} patients from FHIR API...")
         try:
             url = f"{self.base_url}/Patient?_count={count}"
             response = self.session.get(url, timeout=self.timeout)
             response.raise_for_status()
-            return response.json().get("entry", [])
+            patients = response.json().get("entry", [])
+            logger.info(f"Successfully fetched {len(patients)} patients")
+            return patients
         except requests.exceptions.Timeout:
-            logging.error("FHIR API timeout")
+            logger.error("FHIR API timeout - connection took too long")
             return []
 
         except requests.exceptions.HTTPError as e:
-            logging.error(f"FHIR API HTTP error: {e}")
+            logger.error(f"FHIR API HTTP error: {e}")
             return []
 
         except Exception as e:
-            logging.exception("Unexpected API error")
+            logger.exception("Unexpected API error")
             return []

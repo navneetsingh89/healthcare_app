@@ -1,5 +1,7 @@
 import sqlite3
-import logging
+from utils.logger import get_logger
+
+logger = get_logger(__name__)
 
 
 class PatientRepository:
@@ -33,7 +35,7 @@ class PatientRepository:
                     """,
                     (patient.patient_id, patient.name, patient.dob, patient.gender),
                 )
-                logging.info(f"Saved patient {patient.patient_id}")
+                logger.info(f"Saved patient {patient.patient_id}")
 
         except sqlite3.DatabaseError:
-            logging.exception("Database error while saving patient")
+            logger.exception("Database error while saving patient")
