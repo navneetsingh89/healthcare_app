@@ -9,6 +9,7 @@ stores it in SQLite, and exports a summary to the console and a text file.
 - Saves patients to `patients.db` (SQLite)
 - Appends `patient_id,name` to `patients.txt`
 - Prints patient summaries to the console
+- Logs API, parsing, and persistence flow with a shared logger
 
 ## Project Structure
 - `main.py` - entry point
@@ -18,14 +19,17 @@ stores it in SQLite, and exports a summary to the console and a text file.
 - `repository/` - SQLite storage
 - `service/` - orchestration
 - `export/` - console + file exporters
+- `utils/` - logging utilities (`setup_logger`, `get_logger`)
+- `config/` - YAML config and runtime settings
 
 ## Requirements
 - Python 3.10+ (works with 3.13 too)
 - `requests`
+- `pyyaml`
 
 Install dependency:
 ```bash
-pip install requests
+pip install -r requirements.txt
 ```
 
 ## Setup (Recommended)
@@ -33,6 +37,11 @@ pip install requests
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+```
+
+If PowerShell blocks script execution, run once:
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 ```
 
 ## Run
@@ -52,3 +61,4 @@ service.process(count=10)
 ## Notes
 - The FHIR server is public and may rate-limit or change availability.
 - Errors and retries are logged via the built-in `logging` module.
+- `utils` is a package; importing `from utils import get_logger` and `from utils import setup_logger` is supported.
