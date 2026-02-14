@@ -1,3 +1,5 @@
+"""Application entry point for the healthcare patient import workflow."""
+
 from api.fhir_client import FhirApiClient
 from parser.patient_parser import PatientParser
 from repository.patient_repository import PatientRepository
@@ -10,10 +12,19 @@ from config.settings import Settings
 logger = setup_logger(__name__)
 
 
-if __name__ == "__main__":
-    logger.info(f"Starting healthcare app - Environment: {Settings.ENV}")
+def main() -> None:
+    """
+    Run the full patient processing pipeline.
     
-    api_client = FhirApiClient(Settings.FHIR_BASE_URL,)
+    Args:
+        None
+    
+    Returns:
+        None
+    """
+    logger.info(f"Starting healthcare app - Environment: {Settings.ENV}")
+
+    api_client = FhirApiClient(Settings.FHIR_BASE_URL)
     parser = PatientParser()
     repository = PatientRepository(Settings.DB_PATH)
     console_exporter = ConsoleExporter()
@@ -21,5 +32,9 @@ if __name__ == "__main__":
 
     service = PatientService(api_client, parser, repository, console_exporter, file_exporter)
     service.process(count=10)
-    
+
     logger.info("Healthcare app completed successfully")
+
+
+if __name__ == "__main__":
+    main()

@@ -1,18 +1,51 @@
+"""SQLite repository for patient persistence."""
+
 import sqlite3
-from utils.logger import get_logger
+
+from models.patient import Patient
+from utils import get_logger
 
 logger = get_logger(__name__)
 
 
 class PatientRepository:
-    def __init__(self, db_path):
+    """Handles create and save operations for patient records."""
+
+    def __init__(self, db_path: str) -> None:
+        """
+        Initialize repository and ensure table exists.
+        
+        Args:
+            db_path: File path to the SQLite database.
+        
+        Returns:
+            None
+        """
         self.db_path = db_path
         self._create_table()
 
-    def _get_connection(self):
+    def _get_connection(self) -> sqlite3.Connection:
+        """
+        Return a database connection to the configured SQLite file.
+        
+        Args:
+            None
+        
+        Returns:
+            sqlite3.Connection: Open SQLite connection object.
+        """
         return sqlite3.connect(self.db_path)
 
-    def _create_table(self):
+    def _create_table(self) -> None:
+        """
+        Create the patients table if it does not already exist.
+        
+        Args:
+            None
+        
+        Returns:
+            None
+        """
         with self._get_connection() as conn:
             conn.execute(
                 """
@@ -25,7 +58,16 @@ class PatientRepository:
                 """
             )
 
-    def save(self, patient):
+    def save(self, patient: Patient) -> None:
+        """
+        Insert or replace a patient row in the database.
+        
+        Args:
+            patient: Patient entity to persist.
+        
+        Returns:
+            None
+        """
         try:
             with self._get_connection() as conn:
                 conn.execute(

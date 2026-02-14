@@ -1,3 +1,7 @@
+"""Parser that converts raw FHIR JSON into Patient domain objects."""
+
+from typing import Any
+
 from models.patient import Patient
 from utils import get_logger
 
@@ -5,7 +9,18 @@ logger = get_logger(__name__)
 
 
 class PatientParser:
-    def parse(self, patient_json):
+    """Builds Patient instances from FHIR resource dictionaries."""
+
+    def parse(self, patient_json: dict[str, Any]) -> Patient:
+        """
+        Parse a FHIR patient resource into a validated Patient object.
+        
+        Args:
+            patient_json: Raw FHIR patient resource payload.
+        
+        Returns:
+            Patient: Parsed and validated patient domain object.
+        """
         try:
             name = "Unknown"
             names = patient_json.get("name", [])
