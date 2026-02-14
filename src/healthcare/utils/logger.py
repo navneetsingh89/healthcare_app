@@ -3,7 +3,7 @@
 import logging
 import sys
 
-from config.settings import Settings
+from healthcare.config.settings import Settings
 
 
 def setup_logger(name: str = __name__) -> logging.Logger:

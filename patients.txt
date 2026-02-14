@@ -358,3 +358,13 @@ bae2bf00-eca1-47fb-bb43-272f8de1449c,Louis Maggio
 ad5f593e-8dc6-41f9-b458-74843e268431,Mitch Leannon
 a656ed17-26cc-47cb-981e-22207719cc22,Jackson Bode
 3f76db0e-4f33-4ded-b815-1500f47618f4,Tyrell Kuphal
+mdcalc1,Al Mdc
+1410c2ee-05cb-4d45-86cc-f4980597f053,Louie Jast
+patient-dcw-rs,Ross Smith
+5ee05359-57bf-4cee-8e89-91382c07e162,Barney Abbott
+patient-dcw-ms,Michael Scott
+patient-dcw-mp,Mitchell Pritchett
+test-patient-2,Jane Doe
+patient-dcw-jt,Joey Tribbiani
+patient-dcw-cd,Claire Dunphy
+patient-dcw-jh,Jim Halpert

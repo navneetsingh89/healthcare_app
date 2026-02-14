@@ -6,7 +6,7 @@ import requests
 from requests.adapters import HTTPAdapter
 from urllib3.util.retry import Retry
 
-from utils import get_logger
+from healthcare.utils import get_logger
 
 logger = get_logger(__name__)
 

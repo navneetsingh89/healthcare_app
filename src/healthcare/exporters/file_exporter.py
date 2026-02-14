@@ -1,7 +1,7 @@
 """File exporter implementation."""
 
-from export.base import PatientExporter
-from models.patient import Patient
+from healthcare.exporters.base import PatientExporter
+from healthcare.models.patient import Patient
 
 
 class FileExporter(PatientExporter):

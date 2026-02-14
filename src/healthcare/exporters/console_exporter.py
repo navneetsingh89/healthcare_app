@@ -1,8 +1,8 @@
 """Console exporter implementation."""
 
-from export.base import PatientExporter
-from models.patient import Patient
-from utils import get_logger
+from healthcare.exporters.base import PatientExporter
+from healthcare.models.patient import Patient
+from healthcare.utils import get_logger
 
 logger = get_logger(__name__)
 

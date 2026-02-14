@@ -1,10 +1,10 @@
 """Application service that orchestrates fetch, parse, save, and export."""
 
-from api.fhir_client import FhirApiClient
-from parser.patient_parser import PatientParser
-from repository.patient_repository import PatientRepository
-from export.base import PatientExporter
-from export.file_exporter import FileExporter
+from healthcare.api.fhir_client import FhirApiClient
+from healthcare.parsers.patient_parser import PatientParser
+from healthcare.repository.patient_repository import PatientRepository
+from healthcare.exporters.base import PatientExporter
+from healthcare.exporters.file_exporter import FileExporter
 
 
 class PatientService:

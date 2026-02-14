@@ -1,6 +1,6 @@
 """Base exporter contract for patient output targets."""
 
-from models.patient import Patient
+from healthcare.models.patient import Patient
 
 
 class PatientExporter:
