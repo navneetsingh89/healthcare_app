@@ -51,6 +51,46 @@ healthcare_project/
 +-- requirements.txt
 ```
 
+## Architecture Diagram
+```mermaid
+flowchart LR
+    A[main.py] --> B[PatientService]
+    B --> C[FhirApiClient]
+    B --> D[PatientParser]
+    D --> E[Patient]
+    B --> F[PatientRepository]
+    B --> G[ConsoleExporter]
+    B --> H[FileExporter]
+
+    C --> I[(FHIR API)]
+    F --> J[(SQLite DB)]
+    H --> K[(patients.txt)]
+```
+
+## Runtime Flow
+```mermaid
+sequenceDiagram
+    participant M as main.py
+    participant S as PatientService
+    participant A as FhirApiClient
+    participant P as PatientParser
+    participant R as PatientRepository
+    participant C as ConsoleExporter
+    participant F as FileExporter
+
+    M->>S: process(count)
+    S->>A: fetch_patients(count)
+    A-->>S: entries
+
+    loop for each entry
+        S->>P: parse(resource)
+        P-->>S: Patient
+        S->>R: save(Patient)
+        S->>C: export(Patient)
+        S->>F: export(Patient)
+    end
+```
+
 ## Requirements
 - Python 3.10+
 - `requests`
