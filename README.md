@@ -39,7 +39,12 @@ healthcare_project/
 |
 +-- tests/
 |   +-- unit/
+|   |   +-- test_api_fhir_client.py
+|   |   +-- test_patient_model.py
+|   |   +-- test_patient_parser.py
+|   |   +-- test_patient_service.py
 |   +-- integration/
+|       +-- test_patient_pipeline.py
 |
 +-- main.py
 +-- pytest.ini
