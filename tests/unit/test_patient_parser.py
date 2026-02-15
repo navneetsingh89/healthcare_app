@@ -1,5 +1,8 @@
+import pytest
 from healthcare.parsers.patient_parser import PatientParser
 
+
+ 
 
 def test_parse_valid_patient():
     raw_data = {
@@ -88,3 +91,18 @@ def test_parse_malformed_name_payload_uses_parser_exception_fallback():
     assert patient.name == "UNKNOWN"
     assert patient.dob == "UNKNOWN"
     assert patient.gender == "UNKNOWN_GENDER"
+
+
+# -----------------------
+# Completely empty JSON
+# -----------------------
+
+@pytest.fixture
+def parser():
+    return PatientParser()
+
+
+def test_empty_json(parser):
+    patient = parser.parse({})
+    assert patient.name == "Unknown"
+    assert patient.patient_id == "UNKNOWN_ID"
