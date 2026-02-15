@@ -1,45 +1,70 @@
 # Healthcare App (FHIR Patient Import)
 
-Simple Python app that pulls patient data from a public FHIR server, parses it,
-stores it in SQLite, and exports a summary to the console and a text file.
+Python app that pulls patient data from a public FHIR server, parses it,
+stores it in SQLite, and exports a summary to console and text file.
 
 ## What It Does
 - Fetches patients from `https://r4.smarthealthit.org` (FHIR R4 demo server)
 - Parses patient name, birth date, and gender
-- Saves patients to `patients.db` (SQLite)
-- Appends `patient_id,name` to `patients.txt`
-- Prints patient summaries to the console
-- Logs API, parsing, and persistence flow with a shared logger
+- Saves patients to SQLite
+- Appends `patient_id,name` to a text file
+- Prints patient summaries to console logs
 
 ## Project Structure
-- `main.py` - entry point
-- `api/` - FHIR API client
-- `parser/` - patient JSON parsing
-- `models/` - patient model and validation
-- `repository/` - SQLite storage
-- `service/` - orchestration
-- `export/` - console + file exporters
-- `utils/` - logging utilities (`setup_logger`, `get_logger`)
-- `config/` - YAML config and runtime settings
+```text
+healthcare_project/
+|
++-- src/
+|   +-- healthcare/
+|       +-- __init__.py
+|       +-- api/
+|       |   +-- fhir_client.py
+|       +-- models/
+|       |   +-- patient.py
+|       +-- parsers/
+|       |   +-- patient_parser.py
+|       +-- repository/
+|       |   +-- patient_repository.py
+|       +-- services/
+|       |   +-- patient_service.py
+|       +-- exporters/
+|       |   +-- base.py
+|       |   +-- console_exporter.py
+|       |   +-- file_exporter.py
+|       +-- config/
+|       |   +-- settings.py
+|       |   +-- config.yml
+|       +-- utils/
+|           +-- logger.py
+|
++-- tests/
+|   +-- unit/
+|   +-- integration/
+|
++-- main.py
++-- pytest.ini
++-- requirements.txt
+```
 
 ## Requirements
-- Python 3.10+ (works with 3.13 too)
+- Python 3.10+
 - `requests`
-- `pyyaml`
+- `PyYAML`
+- `pytest` (for tests)
 
-Install dependency:
+Install dependencies:
 ```bash
 pip install -r requirements.txt
 ```
 
-## Setup (Recommended)
-```bash
+## Setup (Windows PowerShell)
+```powershell
 python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
 ```
 
-If PowerShell blocks script execution, run once:
+If script execution is blocked:
 ```powershell
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 ```
@@ -49,16 +74,27 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
 python main.py
 ```
 
-By default it fetches 10 patients. You can change this in `main.py`:
-```python
-service.process(count=10)
+## Test
+Run all tests:
+```bash
+python -m pytest -q
 ```
 
-## Outputs
-- `patients.db` - SQLite database with `patients` table
-- `patients.txt` - appended lines of `patient_id,name`
+Run only unit tests:
+```bash
+python -m pytest tests/unit -q
+```
+
+Run only integration tests:
+```bash
+python -m pytest tests/integration -q
+```
+
+## Output Files
+- DB path from `src/healthcare/config/config.yml` (`database.path`)
+- Export file path from `FILE_PATH` env var or default `patients.txt`
 
 ## Notes
-- The FHIR server is public and may rate-limit or change availability.
-- Errors and retries are logged via the built-in `logging` module.
-- `utils` is a package; importing `from utils import get_logger` and `from utils import setup_logger` is supported.
+- `main.py` adds `src` to `sys.path` so `healthcare.*` imports work when running directly.
+- `pytest.ini` sets `pythonpath = src` for test discovery/imports.
+- Public FHIR APIs can be rate-limited or temporarily unavailable.
