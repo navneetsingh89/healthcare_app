@@ -9,10 +9,10 @@ from healthcare.config.settings import Settings
 def setup_logger(name: str = __name__) -> logging.Logger:
     """
     Configure and return a logger instance with consistent formatting.
-    
+
     Args:
         name: Logger name (typically __name__)
-    
+
     Returns:
         logging.Logger: Configured logger instance
     """
@@ -41,10 +41,10 @@ def setup_logger(name: str = __name__) -> logging.Logger:
 def get_logger(name: str = __name__) -> logging.Logger:
     """
     Get a configured logger for the given module or component name.
-    
+
     Args:
         name: Logger name (typically __name__)
-    
+
     Returns:
         logging.Logger: Logger instance
     """

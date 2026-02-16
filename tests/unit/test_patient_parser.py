@@ -2,8 +2,6 @@ import pytest
 from healthcare.parsers.patient_parser import PatientParser
 
 
- 
-
 def test_parse_valid_patient():
     raw_data = {
         "id": "123",
@@ -96,6 +94,7 @@ def test_parse_malformed_name_payload_uses_parser_exception_fallback():
 # -----------------------
 # Completely empty JSON
 # -----------------------
+
 
 @pytest.fixture
 def parser():

@@ -10,10 +10,10 @@ class FileExporter(PatientExporter):
     def __init__(self, filepath: str) -> None:
         """
         Store destination file path.
-        
+
         Args:
             filepath: Output file path for exported patient rows.
-        
+
         Returns:
             None
         """
@@ -22,10 +22,10 @@ class FileExporter(PatientExporter):
     def export(self, patient: Patient) -> None:
         """
         Append one patient row to the output file.
-        
+
         Args:
             patient: Patient record to append.
-        
+
         Returns:
             None
         """

@@ -23,13 +23,13 @@ class FhirApiClient:
     ) -> None:
         """
         Initialize HTTP session with retry policy for transient failures.
-        
+
         Args:
             base_url: Base URL of the FHIR API server.
             max_retries: Maximum number of retry attempts for transient failures.
             backoff_factor: Backoff factor used between retry attempts.
             timeout: Connect and read timeout values in seconds.
-        
+
         Returns:
             None
         """
@@ -56,10 +56,10 @@ class FhirApiClient:
     def fetch_patients(self, count: int = 10) -> list[dict[str, Any]]:
         """
         Fetch patient entries from the FHIR endpoint.
-        
+
         Args:
             count: Number of patient resources to request.
-        
+
         Returns:
             list[dict[str, Any]]: Patient entry objects returned by the API.
         """

@@ -12,6 +12,7 @@ def test_patient_accepts_allowed_gender_values(gender):
     assert patient.dob == "1980-01-01"
     assert patient.gender == gender
 
+
 @pytest.mark.parametrize(
     "patient_id,name,dob,expected_id,expected_name,expected_dob",
     [

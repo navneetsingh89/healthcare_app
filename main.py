@@ -27,7 +27,9 @@ def main() -> None:
     console_exporter = ConsoleExporter()
     file_exporter = FileExporter(Settings.FILE_PATH)
 
-    service = PatientService(api_client, parser, repository, console_exporter, file_exporter)
+    service = PatientService(
+        api_client, parser, repository, console_exporter, file_exporter
+    )
     service.process(count=10)
 
     logger.info("Healthcare app completed successfully")

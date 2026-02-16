@@ -9,10 +9,10 @@ class PatientExporter:
     def export(self, patient: Patient) -> None:
         """
         Export a single patient record.
-        
+
         Args:
             patient: Patient record to export.
-        
+
         Returns:
             None
         """

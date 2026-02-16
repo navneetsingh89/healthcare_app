@@ -13,10 +13,10 @@ class ConsoleExporter(PatientExporter):
     def export(self, patient: Patient) -> None:
         """
         Log one patient summary line.
-        
+
         Args:
             patient: Patient record to print in summary format.
-        
+
         Returns:
             None
         """

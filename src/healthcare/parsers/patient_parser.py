@@ -14,10 +14,10 @@ class PatientParser:
     def parse(self, patient_json: dict[str, Any]) -> Patient:
         """
         Parse a FHIR patient resource into a validated Patient object.
-        
+
         Args:
             patient_json: Raw FHIR patient resource payload.
-        
+
         Returns:
             Patient: Parsed and validated patient domain object.
         """

@@ -20,14 +20,14 @@ class PatientService:
     ) -> None:
         """
         Inject workflow dependencies.
-        
+
         Args:
             api_client: FHIR API client instance.
             parser: Parser that converts raw JSON into Patient objects.
             repository: Repository for patient persistence.
             console_exporter: Exporter for console/log output.
             file_exporter: Exporter for file output.
-        
+
         Returns:
             None
         """
@@ -40,10 +40,10 @@ class PatientService:
     def process(self, count: int = 10) -> None:
         """
         Process a batch of patients from API to outputs.
-        
+
         Args:
             count: Number of patient records to process.
-        
+
         Returns:
             None
         """

@@ -14,10 +14,10 @@ class PatientRepository:
     def __init__(self, db_path: str) -> None:
         """
         Initialize repository and ensure table exists.
-        
+
         Args:
             db_path: File path to the SQLite database.
-        
+
         Returns:
             None
         """
@@ -27,10 +27,10 @@ class PatientRepository:
     def _get_connection(self) -> sqlite3.Connection:
         """
         Return a database connection to the configured SQLite file.
-        
+
         Args:
             None
-        
+
         Returns:
             sqlite3.Connection: Open SQLite connection object.
         """
@@ -39,32 +39,30 @@ class PatientRepository:
     def _create_table(self) -> None:
         """
         Create the patients table if it does not already exist.
-        
+
         Args:
             None
-        
+
         Returns:
             None
         """
         with self._get_connection() as conn:
-            conn.execute(
-                """
+            conn.execute("""
                 CREATE TABLE IF NOT EXISTS patients (
                     patient_id TEXT PRIMARY KEY,
                     name TEXT,
                     dob TEXT,
                     gender TEXT
                 )
-                """
-            )
+                """)
 
     def save(self, patient: Patient) -> None:
         """
         Insert or replace a patient row in the database.
-        
+
         Args:
             patient: Patient entity to persist.
-        
+
         Returns:
             None
         """

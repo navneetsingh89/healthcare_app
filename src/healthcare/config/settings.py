@@ -8,8 +8,9 @@ from pathlib import Path
 
 # Load YAML configuration
 config_path = Path(__file__).parent / "config.yml"
-with open(config_path, 'r') as f:
+with open(config_path, "r") as f:
     _config = yaml.safe_load(f)
+
 
 class Settings:
     # Application
